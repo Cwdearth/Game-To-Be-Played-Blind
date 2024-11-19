@@ -1,0 +1,156 @@
+[gd_scene load_steps=19 format=3 uid="uid://bnkqfi4m8khec"]
+
+[ext_resource type="Texture2D" uid="uid://bdov7dv52g2g" path="res://Textures/texture_08.png" id="1_1w8kb"]
+[ext_resource type="Texture2D" uid="uid://bwwj4g8mnvr84" path="res://Textures/texture_13.png" id="2_06lgk"]
+[ext_resource type="Texture2D" uid="uid://byt8iwpnh2jys" path="res://Textures/texture_06.png" id="3_b0kyn"]
+[ext_resource type="Texture2D" uid="uid://dqkie2mptn3rb" path="res://Textures/texture_02.png" id="4_js0gb"]
+[ext_resource type="Texture2D" uid="uid://bepe4vyr8qljy" path="res://Textures/texture_05.png" id="5_wp68e"]
+[ext_resource type="Texture2D" uid="uid://c564plxvtsthv" path="res://Textures/texture_04.png" id="6_qddjv"]
+[ext_resource type="Script" path="res://Scenes/PlayerMovement.gd" id="7_vohix"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7iknu"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_puk0t"]
+sky_material = SubResource("ProceduralSkyMaterial_7iknu")
+
+[sub_resource type="Environment" id="Environment_d77ub"]
+background_mode = 2
+sky = SubResource("Sky_puk0t")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdpfk"]
+albedo_texture = ExtResource("1_1w8kb")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xomks"]
+albedo_texture = ExtResource("2_06lgk")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l74ba"]
+albedo_texture = ExtResource("3_b0kyn")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei8h3"]
+albedo_texture = ExtResource("4_js0gb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbmvb"]
+albedo_texture = ExtResource("5_wp68e")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_axpjj"]
+albedo_texture = ExtResource("6_qddjv")
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_66yn7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3ue1h"]
+points = PackedVector3Array(-0.214183, -0.948028, -0.451129, 0.0227317, 0.952146, 0.498887, 0.171488, 0.951995, 0.469018, -0.125934, 0.952684, -0.483291, 0.499663, -0.953674, -0.00688883, -0.387646, -0.93796, 0.315653, -0.483292, 0.952686, -0.12593, 0.375097, 0.940128, -0.329816, 0.171488, -0.951995, 0.469018, 0.140783, -0.945485, -0.479579, 0.469014, 0.952011, 0.171499, -0.387646, 0.93796, 0.315653, -0.483292, -0.952686, -0.12593, -0.183511, -0.943076, 0.464698, 0.407412, -0.946994, 0.288983, 0.375097, -0.940128, -0.329816, -0.395154, 0.955761, -0.305523, -0.479555, 0.945437, 0.14088, 0.464698, 0.943099, -0.183512, 0.140783, 0.945485, -0.479579, -0.243203, 0.945955, 0.436491, -0.479555, -0.945437, 0.14088, 0.288971, 0.946988, 0.407421, -0.395154, -0.955761, -0.305523, -0.0069906, -0.953641, 0.499658, 0.499663, 0.953674, -0.00688883, -0.271948, 0.943071, -0.419217, 0.464698, -0.943099, -0.183512, -0.125934, -0.952684, -0.483291, 0.315648, 0.937973, -0.387651, 0.469014, -0.952011, 0.171499, 0.407412, 0.946994, 0.288983)
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d77ub")
+
+[node name="Map" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.00659465, 0.00178175, -0.0212345)
+
+[node name="Ground" type="Node3D" parent="Map"]
+
+[node name="World Plane" type="CSGBox3D" parent="Map/Ground"]
+use_collision = true
+size = Vector3(1000, 0.001, 1000)
+material = SubResource("StandardMaterial3D_mdpfk")
+
+[node name="Playground" type="CSGBox3D" parent="Map/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+material_overlay = SubResource("StandardMaterial3D_xomks")
+use_collision = true
+size = Vector3(20, 0.25, 20)
+
+[node name="Playground Edge" type="CSGBox3D" parent="Map/Ground"]
+material_overlay = SubResource("StandardMaterial3D_l74ba")
+use_collision = true
+size = Vector3(25, 0.25, 25)
+
+[node name="Obstacles" type="Node3D" parent="Map"]
+
+[node name="Northwast Obstacle" type="CSGBox3D" parent="Map/Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0.932, 5.5)
+material_override = SubResource("StandardMaterial3D_ei8h3")
+use_collision = true
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="Southwest Obstacle" type="CSGBox3D" parent="Map/Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.935, -5.5)
+material_override = SubResource("StandardMaterial3D_ei8h3")
+use_collision = true
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="Southeast Obstacle" type="CSGBox3D" parent="Map/Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.935, 5.5)
+material_override = SubResource("StandardMaterial3D_ei8h3")
+use_collision = true
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="Northwest Obstacle" type="CSGBox3D" parent="Map/Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0.934, -5.5)
+material_override = SubResource("StandardMaterial3D_ei8h3")
+use_collision = true
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="CenterObstacle" type="CSGBox3D" parent="Map/Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.934, 0)
+material_override = SubResource("StandardMaterial3D_ei8h3")
+use_collision = true
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="Fence Object" type="CSGCombiner3D" parent="Map/Obstacles"]
+material_override = SubResource("StandardMaterial3D_mbmvb")
+use_collision = true
+
+[node name="West Fence" type="CSGBox3D" parent="Map/Obstacles/Fence Object"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.157, -12.25)
+use_collision = true
+size = Vector3(0.019, 2.134, 24.5)
+
+[node name="East Fence" type="CSGBox3D" parent="Map/Obstacles/Fence Object"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.15, 12.25)
+use_collision = true
+size = Vector3(0.019, 2.134, 24.5)
+
+[node name="South Fence" type="CSGBox3D" parent="Map/Obstacles/Fence Object"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.25, 1.15, 0)
+use_collision = true
+size = Vector3(0.019, 2.134, 24.5)
+
+[node name="North Fence (FRONT)" type="CSGBox3D" parent="Map/Obstacles/Fence Object"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.25, 1.15, 0)
+material_override = SubResource("StandardMaterial3D_axpjj")
+use_collision = true
+size = Vector3(0.019, 2.134, 24.5)
+
+[node name="Player Body" type="CharacterBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.00167847, 0.0176744, -0.0197601)
+floor_stop_on_slope = false
+floor_constant_speed = true
+script = ExtResource("7_vohix")
+
+[node name="Player Mesh" type="MeshInstance3D" parent="Player Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2366, 1.12251, 0)
+mesh = SubResource("CylinderMesh_66yn7")
+
+[node name="Player Collision Mesh" type="CollisionShape3D" parent="Player Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2366, 1.12251, 0)
+shape = SubResource("ConvexPolygonShape3D_3ue1h")
+
+[node name="Player Head" type="Node3D" parent="Player Body"]
+
+[node name="Camera3D" type="Camera3D" parent="Player Body/Player Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2312, 1.60832, -0.415261)
