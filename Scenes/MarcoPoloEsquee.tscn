@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnkqfi4m8khec"]
+[gd_scene load_steps=19 format=3 uid="uid://bnkqfi4m8khec"]
 
 [ext_resource type="Texture2D" uid="uid://bdov7dv52g2g" path="res://Textures/texture_08.png" id="1_1w8kb"]
 [ext_resource type="Texture2D" uid="uid://bwwj4g8mnvr84" path="res://Textures/texture_13.png" id="2_06lgk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dqkie2mptn3rb" path="res://Textures/texture_02.png" id="4_js0gb"]
 [ext_resource type="AudioStream" uid="uid://d2xsy46d81bo4" path="res://Sounds/swing.wav" id="6_oe85c"]
 [ext_resource type="Texture2D" uid="uid://c564plxvtsthv" path="res://Textures/texture_04.png" id="6_qddjv"]
+[ext_resource type="Script" path="res://Scripts/SoundEmitter.gd" id="7_lx5es"]
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="7_vohix"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7iknu"]
@@ -112,9 +113,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.934, 0)
 material_override = SubResource("StandardMaterial3D_ei8h3")
 use_collision = true
 size = Vector3(1.5, 1.5, 1.5)
+script = ExtResource("7_lx5es")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Map/Obstacles/CenterObstacle"]
 stream = ExtResource("6_oe85c")
+attenuation_model = 2
+volume_db = -20.18
+pitch_scale = 0.75
+max_distance = 15.0
 
 [node name="West Fence" type="CSGBox3D" parent="Map/Obstacles"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.86265e-09, 0.85, -12.25)
@@ -149,5 +155,3 @@ shape = SubResource("ConvexPolygonShape3D_wbnyl")
 [node name="Player Head" type="Node3D" parent="Player"]
 
 [node name="Camera3D" type="Camera3D" parent="Player/Player Head"]
-
-[node name="AudioListener3D" type="AudioListener3D" parent="Player/Player Head"]

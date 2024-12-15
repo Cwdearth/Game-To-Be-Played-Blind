@@ -11,7 +11,7 @@ func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	return
 	
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("left"):
 		head.rotate_y(SENSITIVITY)
 	elif Input.is_action_pressed("right"):
