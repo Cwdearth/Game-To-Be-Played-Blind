@@ -1,0 +1,250 @@
+[gd_scene load_steps=29 format=3 uid="uid://bnkqfi4m8khec"]
+
+[ext_resource type="Texture2D" uid="uid://bdov7dv52g2g" path="res://Textures/texture_08.png" id="1_1w8kb"]
+[ext_resource type="Texture2D" uid="uid://bwwj4g8mnvr84" path="res://Textures/texture_13.png" id="2_06lgk"]
+[ext_resource type="Script" path="res://Scripts/ConcreteSoundEmitter.gd" id="2_ycpym"]
+[ext_resource type="AudioStream" uid="uid://bn0h3o5etvu5n" path="res://Sounds/concrete.wav" id="3_20lm6"]
+[ext_resource type="Texture2D" uid="uid://byt8iwpnh2jys" path="res://Textures/texture_06.png" id="3_b0kyn"]
+[ext_resource type="Texture2D" uid="uid://dqkie2mptn3rb" path="res://Textures/texture_02.png" id="4_js0gb"]
+[ext_resource type="Script" path="res://Scripts/GrassSoundEmitter.gd" id="4_mcrrx"]
+[ext_resource type="Script" path="res://Scripts/SlideSoundEmitter.gd" id="6_idujb"]
+[ext_resource type="AudioStream" uid="uid://d2xsy46d81bo4" path="res://Sounds/swing.wav" id="6_oe85c"]
+[ext_resource type="AudioStream" uid="uid://cmktskim0jqel" path="res://Sounds/grass.wav" id="6_pa376"]
+[ext_resource type="Texture2D" uid="uid://c564plxvtsthv" path="res://Textures/texture_04.png" id="6_qddjv"]
+[ext_resource type="Script" path="res://Scripts/SandboxSoundEmitter.gd" id="7_gbc86"]
+[ext_resource type="Script" path="res://Scripts/SwingSoundEmitter.gd" id="7_lx5es"]
+[ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="7_vohix"]
+[ext_resource type="Script" path="res://Scripts/PlayStructureSoundEmitter.gd" id="8_mnuor"]
+[ext_resource type="Script" path="res://Scripts/SeesawSoundEmitter.gd" id="9_0x5xw"]
+[ext_resource type="Script" path="res://Scripts/NPCMovement.gd" id="15_36ok5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7iknu"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_puk0t"]
+sky_material = SubResource("ProceduralSkyMaterial_7iknu")
+
+[sub_resource type="Environment" id="Environment_d77ub"]
+background_mode = 2
+sky = SubResource("Sky_puk0t")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xomks"]
+albedo_texture = ExtResource("2_06lgk")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g3oke"]
+size = Vector3(25, 0.25, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l74ba"]
+albedo_texture = ExtResource("3_b0kyn")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ei8h3"]
+albedo_texture = ExtResource("4_js0gb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdpfk"]
+albedo_texture = ExtResource("1_1w8kb")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tkhbm"]
+albedo_texture = ExtResource("6_qddjv")
+uv1_triplanar = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rbl2b"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wbnyl"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d77ub")
+
+[node name="Map" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.00659465, 0.00178175, -0.0212345)
+
+[node name="Ground" type="Node3D" parent="Map"]
+
+[node name="Playground" type="CSGBox3D" parent="Map/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+material_overlay = SubResource("StandardMaterial3D_xomks")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(20, 0.25, 20)
+
+[node name="ConcreteSoundPlayer" type="AudioStreamPlayer3D" parent="Map/Ground/Playground"]
+stream = ExtResource("3_20lm6")
+
+[node name="Area3D" type="Area3D" parent="Map/Ground/Playground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+script = ExtResource("2_ycpym")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ground/Playground/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("BoxShape3D_g3oke")
+
+[node name="PlaygroundEdge" type="CSGBox3D" parent="Map/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0764799, 0.00103931, -0.0208588)
+material_overlay = SubResource("StandardMaterial3D_l74ba")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(25, 0.25, 25)
+
+[node name="GrassSoundPlayer" type="AudioStreamPlayer3D" parent="Map/Ground/PlaygroundEdge"]
+stream = ExtResource("6_pa376")
+attenuation_model = 3
+emission_angle_degrees = 90.0
+
+[node name="Area3D" type="Area3D" parent="Map/Ground/PlaygroundEdge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+script = ExtResource("4_mcrrx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/Ground/PlaygroundEdge/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.449192, 0)
+shape = SubResource("BoxShape3D_g3oke")
+
+[node name="Obstacles" type="Node3D" parent="Map"]
+
+[node name="Slide" type="CSGBox3D" parent="Map/Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0.932, 5.5)
+material_override = SubResource("StandardMaterial3D_ei8h3")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1.5, 1.5, 1.5)
+script = ExtResource("6_idujb")
+
+[node name="SlideSoundPlayer" type="AudioStreamPlayer3D" parent="Map/Obstacles/Slide"]
+
+[node name="Sandbox" type="CSGBox3D" parent="Map/Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.935, -5.5)
+material_override = SubResource("StandardMaterial3D_ei8h3")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1.5, 1.5, 1.5)
+script = ExtResource("7_gbc86")
+
+[node name="SandboxSoundPlayer" type="AudioStreamPlayer3D" parent="Map/Obstacles/Sandbox"]
+
+[node name="PlayStructure" type="CSGBox3D" parent="Map/Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.935, 5.5)
+material_override = SubResource("StandardMaterial3D_ei8h3")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1.5, 1.5, 1.5)
+script = ExtResource("8_mnuor")
+
+[node name="PlayStructureSoundPlayer" type="AudioStreamPlayer3D" parent="Map/Obstacles/PlayStructure"]
+
+[node name="Seesaw" type="CSGBox3D" parent="Map/Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0.934, -5.5)
+material_override = SubResource("StandardMaterial3D_ei8h3")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1.5, 1.5, 1.5)
+script = ExtResource("9_0x5xw")
+
+[node name="SeesawSoundPlayer" type="AudioStreamPlayer3D" parent="Map/Obstacles/Seesaw"]
+
+[node name="Swing" type="CSGBox3D" parent="Map/Obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.934, 0)
+material_override = SubResource("StandardMaterial3D_ei8h3")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1.5, 1.5, 1.5)
+script = ExtResource("7_lx5es")
+
+[node name="SwingSoundPlayer" type="AudioStreamPlayer3D" parent="Map/Obstacles/Swing"]
+stream = ExtResource("6_oe85c")
+attenuation_model = 2
+volume_db = -20.18
+pitch_scale = 0.75
+max_distance = 15.0
+
+[node name="Background" type="Node3D" parent="Map"]
+
+[node name="World Plane" type="CSGBox3D" parent="Map/Background"]
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(1000, 0.001, 1000)
+material = SubResource("StandardMaterial3D_mdpfk")
+
+[node name="West Fence" type="CSGBox3D" parent="Map/Background"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.58794e-09, 0.85, -12.25)
+material_override = SubResource("StandardMaterial3D_tkhbm")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(0.019, 1.5, 24.5)
+
+[node name="East Fence" type="CSGBox3D" parent="Map/Background"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.85, 12.25)
+material_override = SubResource("StandardMaterial3D_tkhbm")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(0.019, 1.5, 24.5)
+
+[node name="North Fence (FRONT)" type="CSGBox3D" parent="Map/Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.25, 0.85, 0)
+material_override = SubResource("StandardMaterial3D_tkhbm")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(0.019, 1.5, 24.5)
+
+[node name="South Fence" type="CSGBox3D" parent="Map/Background"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.25, 0.85, 0)
+material_override = SubResource("StandardMaterial3D_tkhbm")
+use_collision = true
+collision_layer = 4
+collision_mask = 0
+size = Vector3(0.019, 1.5, 24.5)
+
+[node name="Player" type="CharacterBody3D" parent="." groups=["Player"]]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.0249348, 1.2129, 4.99808)
+collision_mask = 6
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("7_vohix")
+
+[node name="Player Mesh" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_rbl2b")
+
+[node name="Player Collision Mesh" type="CollisionShape3D" parent="Player"]
+shape = SubResource("ConvexPolygonShape3D_wbnyl")
+
+[node name="Player Head" type="Node3D" parent="Player"]
+
+[node name="Camera3D" type="Camera3D" parent="Player/Player Head"]
+
+[node name="NPC" type="CharacterBody3D" parent="."]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.00659465, 1.17789, -8.8921)
+collision_layer = 2
+collision_mask = 5
+floor_stop_on_slope = false
+floor_block_on_wall = false
+script = ExtResource("15_36ok5")
+
+[node name="NPC Mesh" type="MeshInstance3D" parent="NPC"]
+mesh = SubResource("CapsuleMesh_rbl2b")
+
+[node name="NPC Collision Mesh" type="CollisionShape3D" parent="NPC"]
+shape = SubResource("ConvexPolygonShape3D_wbnyl")
+
+[connection signal="body_entered" from="Map/Ground/Playground/Area3D" to="Player" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="Map/Ground/PlaygroundEdge/Area3D" to="Player" method="_on_area_3d_body_entered"]

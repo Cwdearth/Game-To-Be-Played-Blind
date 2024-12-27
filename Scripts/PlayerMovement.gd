@@ -5,17 +5,14 @@ const SENSITIVITY = 0.03
 
 @onready var head = $"Player Head"
 @onready var camera = $"Player Head/Camera3D"
-
-func _ready():
-	# Get rid of cursor
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	return
+@onready var moving = false
 	
-func _process(_delta):
+func _process(_delta) -> void:
 	if Input.is_action_pressed("left"):
 		head.rotate_y(SENSITIVITY)
 	elif Input.is_action_pressed("right"):
 		head.rotate_y(-SENSITIVITY)
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -28,12 +25,12 @@ func _physics_process(delta: float) -> void:
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, 0)).normalized()
 
 	if direction:
+		moving = true
 		velocity.x = direction.x * WALK_SPEED
 		velocity.z = direction.z * WALK_SPEED
 	else:
+		moving = false
 		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
 		velocity.z = move_toward(velocity.z, 0, WALK_SPEED)
 		
-	
-
 	move_and_slide()
