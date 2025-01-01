@@ -7,7 +7,7 @@ const WALK_SPEED = 4.0
 @onready var nav_region
 	
 # Create movement paths
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 		
 	var current_location = global_transform.origin #From global transform obtain the origin variable (Vector3D)
 	var next_location = enemy_agent.get_next_path_position()
@@ -31,9 +31,9 @@ func update_target_position(player_position: Vector3) -> void:
 		return
 
 
-func get_closest_point(position: Vector3) -> Vector3:
+func get_closest_point(pos: Vector3) -> Vector3:
 	var nav_map_rid = nav_region.get_navigation_map()
-	return NavigationServer3D.map_get_closest_point(nav_map_rid, position)
+	return NavigationServer3D.map_get_closest_point(nav_map_rid, pos)
 	
 	
 func get_random_position_in_bounds(bounds_min: Vector3, bounds_max: Vector3) -> Vector3:

@@ -1,23 +1,17 @@
 extends Area3D
 
 @onready var grass_sound = $"GrassSoundPlayer"
-@onready var grass_sound_chaser = AudioStreamPlayer3D.new()
-@onready var grass_sound_avoider = AudioStreamPlayer3D.new()
-@onready var sound_player_dictionary = {"Player": grass_sound, "NPC Chasing": grass_sound_chaser, "NPC Avoiding": grass_sound_avoider}
+@onready var grass_sound_npc = AudioStreamPlayer3D.new()
+@onready var sound_player_dictionary = {"Player": grass_sound, "NPC Chasing": grass_sound_npc, "NPC Avoiding": grass_sound_npc}
 @onready var overlapping_bodies = get_overlapping_bodies()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	grass_sound_chaser.set_stream(load("res://Sounds/grass.wav"))
-	grass_sound_chaser.attenuation_model = AudioStreamPlayer3D.ATTENUATION_LOGARITHMIC
-	grass_sound_chaser.max_distance = 12.5
+	grass_sound_npc.set_stream(load("res://Sounds/grass.wav"))
+	grass_sound_npc.attenuation_model = AudioStreamPlayer3D.ATTENUATION_LOGARITHMIC
+	grass_sound_npc.max_distance = 12.5
 	
-	grass_sound_avoider.set_stream(load("res://Sounds/grass.wav"))
-	grass_sound_avoider.attenuation_model = AudioStreamPlayer3D.ATTENUATION_LOGARITHMIC
-	grass_sound_avoider.max_distance = 12.5
-	
-	add_child(grass_sound_chaser)
-	add_child(grass_sound_avoider)
+	add_child(grass_sound_npc)
 
 func _process(_delta):
 	var new_overlapping_bodies = get_overlapping_bodies()

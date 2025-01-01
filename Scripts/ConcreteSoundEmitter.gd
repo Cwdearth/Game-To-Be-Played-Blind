@@ -1,28 +1,23 @@
 extends Area3D
 
 @onready var concrete_sound = $"ConcreteSoundPlayer"
-@onready var concrete_sound_chaser = AudioStreamPlayer3D.new()
-@onready var concrete_sound_avoider = AudioStreamPlayer3D.new()
-@onready var sound_player_dictionary = {"Player": concrete_sound, "NPC Chasing": concrete_sound_chaser, "NPC Avoiding": concrete_sound_avoider}
+@onready var concrete_sound_npc = AudioStreamPlayer3D.new()
+@onready var sound_player_dictionary = {"Player": concrete_sound, "NPC Chasing": concrete_sound_npc, "NPC Avoiding": concrete_sound_npc}
 @onready var overlapping_bodies = get_overlapping_bodies()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	concrete_sound_chaser.set_stream(load("res://Sounds/concrete.wav"))
-	concrete_sound_chaser.attenuation_model = AudioStreamPlayer3D.ATTENUATION_LOGARITHMIC
-	concrete_sound_chaser.max_distance = 15
+	concrete_sound_npc.set_stream(load("res://Sounds/concrete.wav"))
+	concrete_sound_npc.attenuation_model = AudioStreamPlayer3D.ATTENUATION_LOGARITHMIC
+	concrete_sound_npc.max_distance = 15
 
-	concrete_sound_avoider.set_stream(load("res://Sounds/concrete.wav"))
-	concrete_sound_avoider.attenuation_model = AudioStreamPlayer3D.ATTENUATION_LOGARITHMIC
-	concrete_sound_avoider.max_distance = 15
-
-	add_child(concrete_sound_chaser)
-	add_child(concrete_sound_avoider)
+	add_child(concrete_sound_npc)
 
 func _process(_delta):
 	var new_overlapping_bodies = get_overlapping_bodies()
 	
 	for body in overlapping_bodies:
+		# Get the AudioStreamPlayer3D appropriate for the body, need three emitters for possibility of all NPCs
 		var current_sound = sound_player_dictionary[body.name]
 		if (new_overlapping_bodies.find(body) == -1):
 			current_sound.stop()
