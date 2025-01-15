@@ -1,0 +1,142 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpcqe7w8ohj30"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu'.gd" id="1_l453p"]
+[ext_resource type="Texture2D" uid="uid://csugxf8l4agno" path="res://Textures/Screenshot.png" id="2_ho8ec"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_75jqs"]
+texture = ExtResource("2_ho8ec")
+
+[sub_resource type="SystemFont" id="SystemFont_mfcom"]
+font_weight = 550
+
+[sub_resource type="SystemFont" id="SystemFont_4y58k"]
+font_weight = 525
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je3vh"]
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qy51q"]
+bg_color = Color(0.3501, 0.661555, 0.653383, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l453p")
+
+[node name="Wallpaper" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_75jqs")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.5
+offset_top = -154.0
+offset_right = 293.5
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_mfcom")
+theme_override_font_sizes/font_size = 50
+text = "Marco Polo-esque Game"
+
+[node name="RoundType" type="CheckButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.981
+anchor_top = 0.951
+anchor_right = 0.981
+anchor_bottom = 0.951
+offset_left = -22.1121
+offset_top = -12.248
+offset_right = 21.8879
+offset_bottom = 11.752
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="RoundBlindfolded" type="CheckButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.981
+anchor_top = 0.981
+anchor_right = 0.981
+anchor_bottom = 0.981
+offset_left = -22.1121
+offset_top = -11.688
+offset_right = 21.8879
+offset_bottom = 12.312
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ButtonEntered" type="AudioStreamPlayer2D" parent="."]
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.547
+anchor_right = 0.5
+anchor_bottom = 0.547
+offset_left = -101.0
+offset_top = -47.456
+offset_right = 101.0
+offset_bottom = 47.544
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_4y58k")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_je3vh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qy51q")
+text = "Start Game"
+
+[node name="ExitGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.547
+anchor_right = 0.5
+anchor_bottom = 0.547
+offset_left = -101.0
+offset_top = 62.544
+offset_right = 101.0
+offset_bottom = 157.544
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_4y58k")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_je3vh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qy51q")
+text = "Exit Game"
+
+[connection signal="toggled" from="RoundType" to="." method="_on_round_type_toggled"]
+[connection signal="toggled" from="RoundBlindfolded" to="." method="_on_round_blindfold_toggled"]
+[connection signal="focus_entered" from="StartGame" to="." method="_on_button_entered"]
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="focus_entered" from="ExitGame" to="." method="_on_button_entered"]
+[connection signal="pressed" from="ExitGame" to="." method="_on_exit_game_pressed"]
