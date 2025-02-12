@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://daiq4xfrhf0jk"]
+
+[ext_resource type="Script" path="res://Scripts/prompt.gd" id="1_fv475"]
+[ext_resource type="AudioStream" uid="uid://cmwnbs8rcciiq" path="res://Sounds/please_put_on_the_blindfold.wav" id="2_tgo51"]
+[ext_resource type="AudioStream" uid="uid://jtxe554cgc5n" path="res://Sounds/please_remove_the_blindfold.wav" id="3_o0twn"]
+[ext_resource type="AudioStream" uid="uid://cjr55muucpxrx" path="res://Sounds/press_any_of_the_movement_keys_when_youre_ready.wav" id="4_3io4r"]
+[ext_resource type="AudioStream" uid="uid://bwqpdeuhb1kuq" path="res://Sounds/you_will_be_chasing_this_round.wav" id="5_qta1w"]
+[ext_resource type="AudioStream" uid="uid://cek316lcbvbvw" path="res://Sounds/you_will_be_chased_this_round.wav" id="6_rqcqy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjwue"]
+bg_color = Color(0.708029, 0.854535, 0.949858, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_4f277"]
+font_weight = 550
+subpixel_positioning = 0
+
+[node name="Prompt" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fv475")
+
+[node name="Wallpaper" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sjwue")
+
+[node name="Don" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -552.5
+offset_top = -106.5
+offset_right = 552.5
+offset_bottom = 106.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_4f277")
+theme_override_font_sizes/font_size = 50
+text = "Please put on the blindfold for this round.  Press any of the movement keys when you're ready."
+autowrap_mode = 3
+
+[node name="Doff" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -559.5
+offset_top = -106.5
+offset_right = 559.5
+offset_bottom = 106.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_4f277")
+theme_override_font_sizes/font_size = 50
+text = "Please remove the blindfold.  Press any of the movement keys when you're ready."
+autowrap_mode = 3
+
+[node name="BlindfoldOn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_tgo51")
+volume_db = 2.5
+
+[node name="BlindfoldOff" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_o0twn")
+volume_db = 2.5
+
+[node name="PressMovementKeys" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3io4r")
+volume_db = 2.5
+
+[node name="ChasingRound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qta1w")
+volume_db = 2.5
+
+[node name="AvoidingRound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_rqcqy")
+volume_db = 2.5
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 9.0
+one_shot = true

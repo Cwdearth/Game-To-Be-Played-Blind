@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal target_reached_signal
 const WALK_SPEED = 3.5
 const SENSITIVITY = 0.03
 
@@ -11,6 +12,9 @@ func _process(_delta) -> void:
 		self.rotate_y(SENSITIVITY)
 	elif Input.is_action_pressed("right"):
 		self.rotate_y(-SENSITIVITY)
+		
+	if target_reached():
+		emit_signal("target_reached_signal")
 
 
 func _physics_process(delta: float) -> void:
