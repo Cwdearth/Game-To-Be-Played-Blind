@@ -1,0 +1,179 @@
+[gd_scene load_steps=19 format=3 uid="uid://cfhqjkfgie1wh"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_5o5jf"]
+[ext_resource type="Texture2D" uid="uid://csugxf8l4agno" path="res://Textures/main_menu_background.png" id="2_1pypl"]
+[ext_resource type="Texture2D" uid="uid://cqdijr2cnxp0p" path="res://Textures/check_box_icon.png" id="3_autwv"]
+[ext_resource type="Texture2D" uid="uid://htw7c7b07fwv" path="res://Textures/check_box_empty_icon.png" id="4_qj1h6"]
+[ext_resource type="AudioStream" uid="uid://ca3shh7pg6ebm" path="res://Sounds/hover_sound.mp3" id="5_gcwru"]
+[ext_resource type="AudioStream" uid="uid://dxbrnfd4ixr5n" path="res://Sounds/meditating_beat.mp3" id="6_k4xy6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_75jqs"]
+texture = ExtResource("2_1pypl")
+
+[sub_resource type="SystemFont" id="SystemFont_mfcom"]
+font_weight = 550
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i6k2b"]
+
+[sub_resource type="Theme" id="Theme_4xxxj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_415j8"]
+
+[sub_resource type="SystemFont" id="SystemFont_4y58k"]
+font_weight = 525
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ckjx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_je3vh"]
+bg_color = Color(0.151276, 0.151276, 0.151276, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wxarl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qy51q"]
+bg_color = Color(0.3501, 0.661555, 0.653383, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_un1qp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qbjx4"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5o5jf")
+
+[node name="Wallpaper" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_75jqs")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -293.5
+offset_top = -154.0
+offset_right = 293.5
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("SystemFont_mfcom")
+theme_override_font_sizes/font_size = 50
+text = "Marco Polo-esque Game"
+
+[node name="RoundType" type="CheckButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.944
+anchor_top = 0.917
+anchor_right = 0.978
+anchor_bottom = 0.978
+offset_left = -11.488
+offset_top = -9.21606
+offset_right = 11.344
+offset_bottom = 9.25598
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i6k2b")
+theme_override_icons/checked = ExtResource("3_autwv")
+theme_override_icons/unchecked = ExtResource("4_qj1h6")
+
+[node name="RoundBlindfolded" type="CheckButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.897
+anchor_top = 0.917
+anchor_right = 0.932
+anchor_bottom = 0.979
+offset_left = -11.344
+offset_top = -9.21606
+offset_right = 10.3359
+offset_bottom = 8.60797
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_4xxxj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_415j8")
+theme_override_icons/checked = ExtResource("3_autwv")
+theme_override_icons/unchecked = ExtResource("4_qj1h6")
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.547
+anchor_right = 0.5
+anchor_bottom = 0.547
+offset_left = -101.0
+offset_top = -47.456
+offset_right = 101.0
+offset_bottom = 47.544
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_4y58k")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ckjx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_je3vh")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wxarl")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qy51q")
+text = "Start Game"
+
+[node name="ExitGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.547
+anchor_right = 0.5
+anchor_bottom = 0.547
+offset_left = -101.0
+offset_top = 62.544
+offset_right = 101.0
+offset_bottom = 157.544
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_4y58k")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_un1qp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_je3vh")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qbjx4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_qy51q")
+text = "Exit Game"
+
+[node name="ButtonEntered" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_gcwru")
+volume_db = 13.813
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_k4xy6")
+parameters/looping = true
+
+[connection signal="toggled" from="RoundType" to="." method="_on_round_type_toggled"]
+[connection signal="toggled" from="RoundBlindfolded" to="." method="_on_round_blindfold_toggled"]
+[connection signal="mouse_entered" from="StartGame" to="." method="_on_start_game_mouse_entered"]
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="mouse_entered" from="ExitGame" to="." method="_on_exit_game_mouse_entered"]
+[connection signal="pressed" from="ExitGame" to="." method="_on_exit_game_pressed"]

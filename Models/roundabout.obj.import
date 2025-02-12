@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dub0x2yq04kt"
+path="res://.godot/imported/roundabout.obj-2abb7e55a470cdf9de3f933927c07e1d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/roundabout.obj-2abb7e55a470cdf9de3f933927c07e1d.mesh"]
+
+source_file="res://Models/roundabout.obj"
+dest_files=["res://.godot/imported/roundabout.obj-2abb7e55a470cdf9de3f933927c07e1d.mesh", "res://.godot/imported/roundabout.obj-2abb7e55a470cdf9de3f933927c07e1d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
