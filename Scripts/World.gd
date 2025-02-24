@@ -8,6 +8,11 @@ extends Node3D
 @onready var environment = $WorldEnvironment.environment
 @onready var root_node = get_tree().get_root()
 
+var data_file_path = ""
+var data_file
+var update_timer = 0.0
+var update_interval = 0.2
+
 @onready var round_default = true
 @onready var round_blindfold_default = true  # True = Blindfolded first | False = Blindfolded Second
 @onready var rounds = 3
@@ -16,6 +21,12 @@ var round_in_progress = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	var date_time_string = Time.get_datetime_string_from_system().replace("-", "_").replace(":", "_")
+	data_file_path = "user://" + date_time_string + ".dat"
+	data_file = FileAccess.open(data_file_path, FileAccess.WRITE)
+	if (!FileAccess.file_exists(data_file_path)):
+		print("Error! Data file not created!")
+	
 	start_round()
 
 func _physics_process(_delta: float) -> void:
@@ -23,6 +34,12 @@ func _physics_process(_delta: float) -> void:
 	enemy_agent_avoiding.update_target_position(player.global_transform.origin)
 	environment.sky_rotation.y += 0.0005
 	environment.sky_rotation.x += 0.00005
+	
+func _process(delta: float):
+	update_timer += delta
+	if update_timer >= update_interval:
+		update_csv()
+		update_timer = 0.0
 
 func start_round():
 	round_in_progress = true
@@ -45,7 +62,9 @@ func end_round():
 	rounds -= 1
 	round_in_progress = false
 	
-	if rounds == 0:
+	if (rounds == 0) and (timer.time_left < timer.wait_time - 1.0):
+		# EXIT GAME THE ROUNDS HAVE COMPLETED
+		data_file.close()
 		get_tree().quit()
 	else:
 		$Prompt.toggle_prompt(true)
@@ -92,3 +111,31 @@ func set_round_default(default) -> void:
 	
 func set_blindfold_default(default) -> void:
 	round_blindfold_default = default
+	
+	
+# CSV FILE CREATE FOR RESEARCH VARIABLES - DISTANCE FROM TARGET, ROUND TYPE, BLINDFOLDED TYPE, ROUND TIME, GLOBAL TIME
+# ROUND # Numerical value for round
+# ROUND TYPE # True = Attacking | False = Avoiding
+# BLINDFOLD TYPE # True = Blindfolded first | False = Blindfolded Second
+# ROUND TIME # The remaining time in the round
+# GLOBAL TIME + DATE
+# DISTANCE FROM TARGET
+
+func distance_between_player_target() -> float:
+	if round_default:
+		# CHASING NPC
+		return player.global_position.distance_to(enemy_agent_chasing.global_position)
+	else:
+		# AVOIDANT NPC
+		return player.global_position.distance_to(enemy_agent_avoiding.global_position)
+	
+func update_csv():
+	
+	var new_data_line = ""
+	var distance = ""
+	if rounds == 3:
+		distance = str(player.global_position.distance_to(Vector3(0, .75, 5)))
+	else:
+		distance = str(distance_between_player_target())
+	new_data_line = str(rounds) + "," + str(round_default) + "," + str(round_blindfold_default) + "," + str(timer.time_left) + "," + Time.get_time_string_from_system() + "," + distance
+	data_file.store_line(new_data_line)

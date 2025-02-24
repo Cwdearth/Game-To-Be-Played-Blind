@@ -75,23 +75,23 @@ autowrap_mode = 3
 
 [node name="BlindfoldOn" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_tgo51")
-volume_db = 2.5
+volume_db = 10.0
 
 [node name="BlindfoldOff" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_o0twn")
-volume_db = 2.5
+volume_db = 10.0
 
 [node name="PressMovementKeys" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_3io4r")
-volume_db = 2.5
+volume_db = 10.0
 
 [node name="ChasingRound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_qta1w")
-volume_db = 2.5
+volume_db = 10.0
 
 [node name="AvoidingRound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_rqcqy")
-volume_db = 2.5
+volume_db = 10.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 9.0
