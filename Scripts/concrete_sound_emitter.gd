@@ -9,7 +9,7 @@ extends Area3D
 func _ready() -> void:
 	concrete_sound_npc.set_stream(load("res://Sounds/concrete.wav"))
 	concrete_sound_npc.attenuation_model = AudioStreamPlayer3D.ATTENUATION_LOGARITHMIC
-	concrete_sound_npc.volume_db = 2.5
+	concrete_sound_npc.volume_db = 3.5
 	concrete_sound_npc.max_distance = 40
 
 	add_child(concrete_sound_npc)

@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 signal target_reached_signal
+var target_reached_value = false
 const WALK_SPEED = 3.5
 const SENSITIVITY = 0.03
 
@@ -13,7 +14,8 @@ func _process(_delta) -> void:
 	elif Input.is_action_pressed("right"):
 		self.rotate_y(-SENSITIVITY)
 		
-	if target_reached():
+	if target_reached() and !target_reached_value:
+		target_reached_value = true
 		emit_signal("target_reached_signal")
 
 
@@ -46,3 +48,6 @@ func target_reached() -> bool:
 			return true
 			
 	return false
+
+func set_target_reached_value(state: bool) -> void:
+	target_reached_value = state

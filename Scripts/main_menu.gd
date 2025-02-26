@@ -1,7 +1,7 @@
 extends Control
 
-@onready var round_type_default = false
-@onready var round_blindfold_default = false
+@onready var avoiding = false
+@onready var blindfolded = false
 @onready var root_node = get_tree().get_root()
 
 var world = load("res://Scenes/world.tscn").instantiate()
@@ -12,23 +12,25 @@ func _ready() -> void:
 	$Music.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_start_game_pressed() -> void:
-	# Delete self
+	# Initialize avoiding boolean (Avoiding round first, true or false)
+	world.set_avoiding(avoiding)
+	# Initialize blindfolded boolean (Blindfolded round first, true or false)
+	world.set_blindfolded(blindfolded)
+	
+	# Delete main menu, it is no longer needed
 	root_node.get_node("MainMenu").queue_free()
 	# Add the game scene to tree
 	root_node.add_child(world)
-	# Configure defaults
-	world.set_round_default(round_type_default)
-	world.set_blindfold_default(round_blindfold_default)
 
 func _on_round_type_toggled(toggled_on: bool) -> void:
-	round_type_default = toggled_on
+	avoiding = toggled_on
 
 func _on_round_blindfold_toggled(toggled_on: bool) -> void:
-	round_blindfold_default = toggled_on
+	blindfolded = toggled_on
 
 func _on_exit_game_pressed() -> void:
 	root_node.exit()

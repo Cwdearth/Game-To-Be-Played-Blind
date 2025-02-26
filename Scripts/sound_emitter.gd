@@ -8,7 +8,7 @@ func _ready() -> void:
 	timer.start()
 	sound_player.play()
 
-func _process(delta):
+func _process(_delta):
 	if timer.time_left < 0.1:
 		timer.start()
 		sound_player.play()
