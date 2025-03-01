@@ -13,7 +13,7 @@ func _process(_delta) -> void:
 		self.rotate_y(SENSITIVITY)
 	elif Input.is_action_pressed("right"):
 		self.rotate_y(-SENSITIVITY)
-		
+
 	if target_reached() and !target_reached_value:
 		target_reached_value = true
 		emit_signal("target_reached_signal")
@@ -34,6 +34,14 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, WALK_SPEED)
 		velocity.z = move_toward(velocity.z, 0, WALK_SPEED)
 		
+	### this section of code is modified by Cody Dearth, but originated from GoDot fourms user zdrmlpzdrmlp
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if ((collision.get_collider() is CSGTorus3D) or (collision.get_collider() is CSGBox3D)) and !$CollideSoundPlayer.is_playing():
+			if collision.get_collider().is_in_group("Obstacles"):
+				$CollideSoundPlayer.play()
+	###
+				
 	move_and_slide()
 
 func target_reached() -> bool:

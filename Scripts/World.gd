@@ -39,7 +39,6 @@ func _physics_process(_delta: float) -> void:
 	environment.sky_rotation.x += 0.00005
 	
 func _process(delta: float):
-	print(enemy_agent_chasing.global_position)
 	# If it isn't the first round (Exploratory) then begin updating enemy of player position
 	if round != total_rounds:
 		if avoiding:
