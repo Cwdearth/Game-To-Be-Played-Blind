@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const WALK_SPEED = 2.85  # Reduced speed for more natural movement
+const WALK_SPEED = 2.9  # Reduced speed for more natural movement
 const ESCAPE_DISTANCE = 3.0  # Minimum distance NPC tries to move away
 const ESCAPE_ATTEMPTS = 5  # Number of retries if stuck
 
