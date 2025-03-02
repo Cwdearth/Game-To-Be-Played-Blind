@@ -2,7 +2,7 @@ extends Area3D
 
 @onready var concrete_sound = $"ConcreteSoundPlayer"
 @onready var concrete_sound_npc = AudioStreamPlayer3D.new()
-@onready var sound_player_dictionary = {"Player": concrete_sound, "NPC Chasing": concrete_sound_npc, "NPC Avoiding": concrete_sound_npc}
+@onready var sound_player_dictionary = {"Player": concrete_sound, "NPCChasing": concrete_sound_npc, "NPCAvoiding": concrete_sound_npc}
 @onready var overlapping_bodies = get_overlapping_bodies()
 
 # Called when the node enters the scene tree for the first time.

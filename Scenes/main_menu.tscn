@@ -82,7 +82,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("SystemFont_mfcom")
 theme_override_font_sizes/font_size = 50
-text = "Marco Polo-esque Game"
+text = "Marko Polo-esque Game"
 
 [node name="RoundType" type="CheckButton" parent="."]
 layout_mode = 1
@@ -163,13 +163,17 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_qbjx4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_qy51q")
 text = "Exit Game"
 
-[node name="ButtonEntered" type="AudioStreamPlayer2D" parent="."]
+[node name="ButtonEntered" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_gcwru")
-volume_db = 13.813
+volume_db = 1.0
 
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_k4xy6")
-parameters/looping = true
+volume_db = -20.0
+
+[node name="TutorialTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="toggled" from="RoundType" to="." method="_on_round_type_toggled"]
 [connection signal="toggled" from="RoundBlindfolded" to="." method="_on_round_blindfold_toggled"]

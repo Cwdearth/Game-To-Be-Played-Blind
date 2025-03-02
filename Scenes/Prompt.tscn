@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://daiq4xfrhf0jk"]
+[gd_scene load_steps=10 format=3 uid="uid://daiq4xfrhf0jk"]
 
 [ext_resource type="Script" path="res://Scripts/prompt.gd" id="1_fv475"]
+[ext_resource type="AudioStream" uid="uid://dpf8jpw3187q1" path="res://Sounds/round_finished.wav" id="2_ojppq"]
 [ext_resource type="AudioStream" uid="uid://cmwnbs8rcciiq" path="res://Sounds/please_put_on_the_blindfold.wav" id="2_tgo51"]
 [ext_resource type="AudioStream" uid="uid://jtxe554cgc5n" path="res://Sounds/please_remove_the_blindfold.wav" id="3_o0twn"]
 [ext_resource type="AudioStream" uid="uid://cjr55muucpxrx" path="res://Sounds/press_any_of_the_movement_keys_when_youre_ready.wav" id="4_3io4r"]
@@ -73,26 +74,30 @@ theme_override_font_sizes/font_size = 50
 text = "Please remove the blindfold.  Press any of the movement keys when you're ready."
 autowrap_mode = 3
 
-[node name="BlindfoldOn" type="AudioStreamPlayer2D" parent="."]
+[node name="RoundFinished" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ojppq")
+volume_db = -5.0
+
+[node name="BlindfoldOn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_tgo51")
-volume_db = 10.0
+volume_db = -5.0
 
-[node name="BlindfoldOff" type="AudioStreamPlayer2D" parent="."]
+[node name="BlindfoldOff" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_o0twn")
-volume_db = 10.0
+volume_db = -5.0
 
-[node name="PressMovementKeys" type="AudioStreamPlayer2D" parent="."]
+[node name="PressMovementKeys" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3io4r")
-volume_db = 10.0
+volume_db = -5.0
 
-[node name="ChasingRound" type="AudioStreamPlayer2D" parent="."]
+[node name="ChasingRound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qta1w")
-volume_db = 10.0
+volume_db = -5.0
 
-[node name="AvoidingRound" type="AudioStreamPlayer2D" parent="."]
+[node name="AvoidingRound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_rqcqy")
-volume_db = 10.0
+volume_db = -5.0
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 9.0
+wait_time = 11.0
 one_shot = true

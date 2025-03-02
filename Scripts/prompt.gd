@@ -15,31 +15,32 @@ func _input(event):
 	if prompt_toggled and timer.is_stopped():
 		if event.is_action_pressed("up"):
 			toggle_prompt(false)
-			get_tree().get_root().get_node("World").start_round()
 		elif event.is_action_pressed("down"):
 			toggle_prompt(false)
-			get_tree().get_root().get_node("World").start_round()
 		elif event.is_action_pressed("left"):
 			toggle_prompt(false)
-			get_tree().get_root().get_node("World").start_round()
 		elif event.is_action_pressed("right"):
 			toggle_prompt(false)
-			get_tree().get_root().get_node("World").start_round()
 		audio_prompt_stage = 0
 			
 func _process(_delta: float) -> void:
 	if !$Timer.is_stopped() and audio_prompt_stage == 0:
+		$RoundFinished.play()
 		if blindfolded:
 			$Don.show()
 			$Doff.hide()
-			$BlindfoldOn.play()
 		else:
 			$Don.hide()
 			$Doff.show()
+		audio_prompt_stage += 1
+	if $Timer.time_left < 9.0 and audio_prompt_stage == 1:
+		if blindfolded:
+			$BlindfoldOn.play()
+		else:
 			$BlindfoldOff.play()
 		audio_prompt_stage += 1
 		
-	if $Timer.time_left < 7.0 and audio_prompt_stage == 1:
+	if $Timer.time_left < 7.0 and audio_prompt_stage == 2:
 		if avoiding:
 			print("Avoiding Round")
 			$AvoidingRound.play()
@@ -48,10 +49,14 @@ func _process(_delta: float) -> void:
 			$ChasingRound.play()
 		audio_prompt_stage += 1
 	
-	if $Timer.time_left < 3.0 and audio_prompt_stage == 2:
+	if $Timer.time_left < 3.0 and audio_prompt_stage == 3:
 		$PressMovementKeys.play()
 		audio_prompt_stage += 1
 		
+func start_round() -> void:
+	toggle_prompt(false)
+	get_tree().get_root().get_node("World").start_round()
+
 func toggle_prompt(state: bool) -> void:
 	prompt_toggled = state
 	get_tree().paused = state
