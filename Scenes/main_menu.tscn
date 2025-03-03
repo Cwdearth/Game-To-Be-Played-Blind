@@ -82,7 +82,8 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = SubResource("SystemFont_mfcom")
 theme_override_font_sizes/font_size = 50
-text = "Marko Polo-esque Game"
+text = "Bean Tag Game"
+horizontal_alignment = 1
 
 [node name="RoundType" type="CheckButton" parent="."]
 layout_mode = 1

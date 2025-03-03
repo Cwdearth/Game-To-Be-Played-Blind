@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgb46spgfbiem"]
+[gd_scene load_steps=7 format=3 uid="uid://cgb46spgfbiem"]
 
+[ext_resource type="Script" path="res://Scenes/tutorial.gd" id="1_kq71j"]
 [ext_resource type="Texture2D" uid="uid://boatverteyvu2" path="res://Textures/AvoidantTypeNPC.png" id="1_uk4ci"]
 [ext_resource type="Texture2D" uid="uid://bsmowbvcys73d" path="res://Textures/ExploratoryRound.png" id="2_2cd3b"]
 [ext_resource type="Texture2D" uid="uid://bm8v3bhb3x67o" path="res://Textures/ChaserNPCRound.png" id="3_l6p5o"]
@@ -9,13 +10,13 @@
 bg_color = Color(0.708029, 0.854535, 0.949858, 1)
 
 [node name="Tutorial" type="Control"]
-process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kq71j")
 
 [node name="Wallpaper" type="Panel" parent="."]
 layout_mode = 1
@@ -26,13 +27,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tourm")
 
-[node name="Label" type="Label" parent="."]
+[node name="Exploratory" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.254
-anchor_top = 0.034
-anchor_right = 0.747
-anchor_bottom = 0.123
+anchor_left = 0.25
+anchor_top = 0.05
+anchor_right = 0.75
+anchor_bottom = 0.05
 offset_left = 0.391998
 offset_top = -0.0320015
 offset_right = -0.544067
@@ -43,30 +44,30 @@ text = "Before the rounds start, you will explore the controls. Bumping into an 
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Label3" type="Label" parent="."]
+[node name="Chasing" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.568
-anchor_top = 0.5
-anchor_right = 0.851
-anchor_bottom = 0.582
-offset_left = -0.335999
-offset_top = -6.0
-offset_right = -0.35199
-offset_bottom = -0.136017
+anchor_left = 0.625
+anchor_top = 0.45
+anchor_right = 0.875
+anchor_bottom = 0.45
+offset_left = 0.207947
+offset_top = 0.279968
+offset_right = 3.64801
+offset_bottom = 130.624
 theme_override_colors/font_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
 theme_override_font_sizes/font_size = 30
 text = "Chasing round, move towards the steps running away from you."
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Label4" type="Label" parent="."]
+[node name="Avoiding" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.183
-anchor_top = 0.506
-anchor_right = 0.495
-anchor_bottom = 0.593
+anchor_left = 0.125
+anchor_top = 0.45
+anchor_right = 0.375
+anchor_bottom = 0.5
 offset_left = 0.18399
 offset_top = 0.111969
 offset_right = -0.240051
@@ -77,62 +78,80 @@ text = "Avoiding round, avoid the steps coming towards you. "
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-autostart = true
-
 [node name="AvoidantTypeNPC" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.615
-anchor_top = 0.625
-anchor_right = 0.948
-anchor_bottom = 0.941
-offset_left = -0.47998
-offset_top = 3.05176e-05
-offset_right = 2175.9
-offset_bottom = 1162.23
-scale = Vector2(0.15, 0.15)
+anchor_left = 0.75
+anchor_top = 0.725
+anchor_right = 0.75
+anchor_bottom = 0.725
+offset_left = -254.15
+offset_top = -136.0
+offset_right = 2305.85
+offset_bottom = 1231.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_uk4ci")
 
 [node name="ChasingTypeNPC" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.235
-anchor_top = 0.625
-anchor_right = 0.569
-anchor_bottom = 0.914
-offset_left = 0.279968
-offset_top = 3.05176e-05
-offset_right = 2175.51
-offset_bottom = 1179.73
-scale = Vector2(0.15, 0.15)
+anchor_left = 0.25
+anchor_top = 0.725
+anchor_right = 0.25
+anchor_bottom = 0.725
+offset_left = -253.0
+offset_top = -136.0
+offset_right = 2307.0
+offset_bottom = 1231.0
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_l6p5o")
 
 [node name="ExploratoryRound" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.392
-anchor_top = 0.148
-anchor_right = 0.726
-anchor_bottom = 0.466
-offset_left = 0.415985
-offset_top = 0.0960007
-offset_right = 2175.65
-offset_bottom = 1162.03
-scale = Vector2(0.15, 0.15)
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.3
+offset_left = -253.24
+offset_top = -134.0
+offset_right = 2306.76
+offset_bottom = 1234.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_2cd3b")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="MovementControls" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.661
-anchor_top = 0.129
-anchor_right = 1.0
-anchor_bottom = 0.443
-offset_left = -259.472
-offset_top = -84.592
-offset_right = 1910.0
-offset_bottom = 1079.94
+anchor_left = 0.8
+anchor_top = 0.15
+anchor_right = 0.9
+anchor_bottom = 0.35
+offset_left = -417.6
+offset_top = -146.2
+offset_right = 2027.2
+offset_bottom = 1157.0
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_0258l")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 540.0
+offset_top = -0.272034
+offset_right = -485.0
+offset_bottom = -29.0
+max_value = 45.0
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

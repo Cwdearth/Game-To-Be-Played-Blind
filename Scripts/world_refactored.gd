@@ -75,9 +75,6 @@ func start_round() -> void:
 			spawn_chaser()
 		else:
 			spawn_avoider()
-		# Default transition, and then enmies are spawned.
-		print("Default Transition")
-		# Default transition
 		default_transition()
 		
 func end_round() -> void:
@@ -137,7 +134,6 @@ func set_blindfolded(state) -> void:
 	$Prompt.set_blindfolded(blindfolded)
 	
 func _on_player_target_reached_signal() -> void:
-	print("Target Reached")
 	timer.stop()
 	
 # Data collection utility

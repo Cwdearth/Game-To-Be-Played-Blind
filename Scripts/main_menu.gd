@@ -15,9 +15,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	print($TutorialTimer.time_left)
 	if $TutorialTimer.is_stopped() and started:
-		root_node.get_node("Tutorial").queue_free()
 		root_node.get_node("MainMenu").queue_free()
 		# Add the game scene to tree
 		root_node.add_child(world)
