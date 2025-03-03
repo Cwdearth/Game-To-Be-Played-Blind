@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cfhqjkfgie1wh"]
+[gd_scene load_steps=20 format=3 uid="uid://cfhqjkfgie1wh"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_5o5jf"]
 [ext_resource type="Texture2D" uid="uid://csugxf8l4agno" path="res://Textures/main_menu_background.png" id="2_1pypl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://htw7c7b07fwv" path="res://Textures/check_box_empty_icon.png" id="4_qj1h6"]
 [ext_resource type="AudioStream" uid="uid://ca3shh7pg6ebm" path="res://Sounds/hover_sound.mp3" id="5_gcwru"]
 [ext_resource type="AudioStream" uid="uid://dxbrnfd4ixr5n" path="res://Sounds/meditating_beat.mp3" id="6_k4xy6"]
+[ext_resource type="Texture2D" uid="uid://c5crxg5gxlekv" path="res://Application/BeanTagIcon.png" id="7_3lpou"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_75jqs"]
 texture = ExtResource("2_1pypl")
@@ -175,6 +176,20 @@ volume_db = -20.0
 [node name="TutorialTimer" type="Timer" parent="."]
 wait_time = 45.0
 one_shot = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -127.0
+offset_top = -126.0
+offset_right = 873.0
+offset_bottom = 871.0
+scale = Vector2(0.255, 0.255)
+texture = ExtResource("7_3lpou")
 
 [connection signal="toggled" from="RoundType" to="." method="_on_round_type_toggled"]
 [connection signal="toggled" from="RoundBlindfolded" to="." method="_on_round_blindfold_toggled"]
