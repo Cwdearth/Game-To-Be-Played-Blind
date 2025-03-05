@@ -7,7 +7,7 @@ func _ready() -> void:
 	pass
 	
 func _process(_delta):
-	if $ProgressBar.value == 45:
+	if $ProgressBar.value == tutorial_time:
 		get_tree().get_root().get_node("Tutorial").queue_free()
 	
 func _on_timer_timeout() -> void:

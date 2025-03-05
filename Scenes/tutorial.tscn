@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://cgb46spgfbiem"]
 
 [ext_resource type="Script" path="res://Scenes/tutorial.gd" id="1_kq71j"]
-[ext_resource type="Texture2D" uid="uid://boatverteyvu2" path="res://Textures/AvoidantTypeNPC.png" id="1_uk4ci"]
-[ext_resource type="Texture2D" uid="uid://bsmowbvcys73d" path="res://Textures/ExploratoryRound.png" id="2_2cd3b"]
-[ext_resource type="Texture2D" uid="uid://bm8v3bhb3x67o" path="res://Textures/ChaserNPCRound.png" id="3_l6p5o"]
+[ext_resource type="Texture2D" uid="uid://lmivedsbighj" path="res://Textures/AvoidingRoundBordered.png" id="2_34p0u"]
+[ext_resource type="Texture2D" uid="uid://u24ntdkscpnh" path="res://Textures/ChasingRoundBordered.png" id="3_ah4kn"]
 [ext_resource type="Texture2D" uid="uid://bjso2q3fxisjk" path="res://Textures/Movement Keys.png" id="4_0258l"]
+[ext_resource type="Texture2D" uid="uid://co0a6p1v1qs7b" path="res://Textures/ExploratoryRoundBordered.png" id="4_j36f2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tourm"]
 bg_color = Color(0.708029, 0.854535, 0.949858, 1)
@@ -34,13 +34,12 @@ anchor_left = 0.25
 anchor_top = 0.05
 anchor_right = 0.75
 anchor_bottom = 0.05
-offset_left = 0.391998
-offset_top = -0.0320015
-offset_right = -0.544067
-offset_bottom = 1.296
+offset_left = -86.0
+offset_right = 90.0
+offset_bottom = 132.0
 theme_override_colors/font_color = Color(0.00518963, 0.00581147, 0.00589853, 1)
 theme_override_font_sizes/font_size = 30
-text = "Before the rounds start, you will explore the controls. Bumping into an obstacle makes a nosie in that direction."
+text = "Before the gameplay rounds start—you will practice moving around, sleep mask on forehead, and without enemies. Each round is 45 seconds long."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -51,13 +50,13 @@ anchor_left = 0.625
 anchor_top = 0.45
 anchor_right = 0.875
 anchor_bottom = 0.45
-offset_left = 0.207947
-offset_top = 0.279968
-offset_right = 3.64801
-offset_bottom = 130.624
+offset_left = -91.0
+offset_top = 1.0
+offset_right = 106.0
+offset_bottom = 133.0
 theme_override_colors/font_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
 theme_override_font_sizes/font_size = 30
-text = "Chasing round, move towards the steps running away from you."
+text = "In the chasing round you will tag your opponent, and when avoiding, avoid for the round duration."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -68,13 +67,12 @@ anchor_left = 0.125
 anchor_top = 0.45
 anchor_right = 0.375
 anchor_bottom = 0.5
-offset_left = 0.18399
-offset_top = 0.111969
-offset_right = -0.240051
-offset_bottom = 2.73596
+offset_left = -92.0
+offset_right = 115.0
+offset_bottom = 123.0
 theme_override_colors/font_color = Color(0.0177324, 0.0177324, 0.0177324, 1)
 theme_override_font_sizes/font_size = 30
-text = "Avoiding round, avoid the steps coming towards you. "
+text = "Listen for an audio prompt to identify whether you are avoiding or chasing. Your position will be reset to the same spawn each round."
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -85,14 +83,14 @@ anchor_left = 0.75
 anchor_top = 0.725
 anchor_right = 0.75
 anchor_bottom = 0.725
-offset_left = -254.15
-offset_top = -136.0
-offset_right = 2305.85
-offset_bottom = 1231.0
+offset_left = -253.0
+offset_top = -133.0
+offset_right = 2307.0
+offset_bottom = 1234.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_uk4ci")
+texture = ExtResource("2_34p0u")
 
 [node name="ChasingTypeNPC" type="TextureRect" parent="."]
 layout_mode = 1
@@ -102,12 +100,12 @@ anchor_top = 0.725
 anchor_right = 0.25
 anchor_bottom = 0.725
 offset_left = -253.0
-offset_top = -136.0
+offset_top = -133.0
 offset_right = 2307.0
-offset_bottom = 1231.0
+offset_bottom = 1234.0
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_l6p5o")
+texture = ExtResource("3_ah4kn")
 
 [node name="ExploratoryRound" type="TextureRect" parent="."]
 layout_mode = 1
@@ -116,14 +114,14 @@ anchor_left = 0.5
 anchor_top = 0.3
 anchor_right = 0.5
 anchor_bottom = 0.3
-offset_left = -253.24
+offset_left = -250.0
 offset_top = -134.0
-offset_right = 2306.76
+offset_right = 2310.0
 offset_bottom = 1234.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_2cd3b")
+texture = ExtResource("4_j36f2")
 
 [node name="MovementControls" type="TextureRect" parent="."]
 layout_mode = 1
@@ -132,10 +130,10 @@ anchor_left = 0.8
 anchor_top = 0.15
 anchor_right = 0.9
 anchor_bottom = 0.35
-offset_left = -417.6
-offset_top = -146.2
-offset_right = 2027.2
-offset_bottom = 1157.0
+offset_left = -414.0
+offset_top = -118.0
+offset_right = 2030.8
+offset_bottom = 1185.2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_0258l")
 

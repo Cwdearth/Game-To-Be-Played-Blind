@@ -14,16 +14,20 @@ func _input(event):
 	# If the player hits any of the movement keys then remove the prompt and proceed to the next round
 	if prompt_toggled and timer.is_stopped():
 		if event.is_action_pressed("up"):
+			$StartGamePrompt.hide()
 			toggle_prompt(false)
 		elif event.is_action_pressed("down"):
+			$StartGamePrompt.hide()
 			toggle_prompt(false)
 		elif event.is_action_pressed("left"):
+			$StartGamePrompt.hide()
 			toggle_prompt(false)
 		elif event.is_action_pressed("right"):
+			$StartGamePrompt.hide()
 			toggle_prompt(false)
 		audio_prompt_stage = 0
 			
-func _process(_delta: float) -> void:
+func _process(_delta: float) -> void:# 11 -> 14
 	if !$Timer.is_stopped() and audio_prompt_stage == 0:
 		$RoundFinished.play()
 		if blindfolded:
@@ -33,14 +37,14 @@ func _process(_delta: float) -> void:
 			$Don.hide()
 			$Doff.show()
 		audio_prompt_stage += 1
-	if $Timer.time_left < 9.0 and audio_prompt_stage == 1:
+	if $Timer.time_left < 14.0 and audio_prompt_stage == 1:# 9 -> 12
 		if blindfolded:
 			$BlindfoldOn.play()
 		else:
 			$BlindfoldOff.play()
 		audio_prompt_stage += 1
 		
-	if $Timer.time_left < 7.0 and audio_prompt_stage == 2:
+	if $Timer.time_left < 7.0 and audio_prompt_stage == 2: # 7->9
 		if avoiding:
 			print("Avoiding Round")
 			$AvoidingRound.play()
@@ -49,7 +53,8 @@ func _process(_delta: float) -> void:
 			$ChasingRound.play()
 		audio_prompt_stage += 1
 	
-	if $Timer.time_left < 3.0 and audio_prompt_stage == 3:
+	if $Timer.time_left < 3.0 and audio_prompt_stage == 3:#3 -> 4
+		$StartGamePrompt.show()
 		$PressMovementKeys.play()
 		audio_prompt_stage += 1
 		

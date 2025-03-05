@@ -98,7 +98,7 @@ func end_round() -> void:
 	
 func spawn_chaser() -> void:
 	enable_entity(enemy_agent_chasing, true)
-	enemy_agent_chasing.global_position = Vector3(0.5, 0.5, -10)
+	enemy_agent_chasing.global_position = Vector3(0, .75, 10)
 
 func spawn_avoider() -> void:
 	enable_entity(enemy_agent_avoiding, true)
